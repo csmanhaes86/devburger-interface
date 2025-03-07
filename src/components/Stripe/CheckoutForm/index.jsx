@@ -62,8 +62,9 @@ export function CheckoutForm() {
 
         if (status === 200 || status === 201) {
           setTimeout(() => {
-            navigate(`/complete?payment_intent_client_secret=${paymentIntent.client_secret}`);
-            clearCart();
+            navigate(
+              `/complete?payment_intent_client_secret=${paymentIntent.client_secret}`,
+            );
           }, 3000);
 
           clearCart();
@@ -77,7 +78,9 @@ export function CheckoutForm() {
         toast.error('😭Falha no sistema! Tente novamente');
       }
     } else {
-      toast.error('😭Falha no sistema! Tente novamente');
+      navigate(
+        `/complete?payment_intent_client_secret=${paymentIntent.client_secret}`,
+      );
     }
 
     setIsLoading(false);

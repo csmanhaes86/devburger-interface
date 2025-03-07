@@ -141,6 +141,10 @@
   margin-bottom: auto;
 }
 
+.status-title {
+  text-align: center;
+}
+
 #status-icon {
   display: flex;
   justify-content: center;
@@ -211,6 +215,7 @@ td {
 }
 
 #retry-button {
+  text-decoration: none;
   text-align: center;
   background: #0055DE;
   color: #ffffff;
