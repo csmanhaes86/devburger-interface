@@ -43,7 +43,7 @@ export const RightContainer = styled.div`
 
   p {
     font-size: 18px;
-    color: #fff;
+    color: ${(props) => props.theme. white};
   }
 
   a {
@@ -54,7 +54,7 @@ export const RightContainer = styled.div`
 export const Title = styled.h2`
   font-family: 'Road Rage', serif;
   font-size: 40px;
-  color: #9758a6;
+  color: ${(props) => props.theme.purple};
   line-height: 40px;
   font-weight: 400;
   text-align: center;
@@ -88,13 +88,13 @@ export const InputContainer = styled.div`
   label {
     font-size: 18px;
     font-weight: 600;
-    color: #fff;
+    color: ${(props) => props.theme. white};
   }
 
   P{
     font-size: 14px;
     line-height: 80%;
-    color: #cf3057;
+    color: ${(props) => props.theme. darkRed};
     font-weight: 600;
     height: 10px;
   }
@@ -103,6 +103,6 @@ export const InputContainer = styled.div`
 
 export const Link = styled(ReactLink)`
   text-decoration: none;
-  color: #fff;
+  color: ${(props) => props.theme. white};
 `;
 
