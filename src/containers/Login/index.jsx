@@ -58,7 +58,7 @@ export function Login() {
           render() {
             setTimeout(() => {
               if (userData?.admin) {
-                navegate('/admin/home');
+                navegate('/admin/pedidos');
               } else {
                 navegate('/');
               }
