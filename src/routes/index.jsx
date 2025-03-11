@@ -8,10 +8,11 @@ import {
   Login,
   Checkout,
   CompletePayment,
+  Admin,
 } from '../containers';
 
 import { UserLayout } from '../layouts/UserLayout';
-
+import { AdminLayout } from '../layouts/AdminLayout';
 export function Router() {
   return (
     <Routes>
@@ -21,6 +22,10 @@ export function Router() {
         <Route path="/carrinho" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/complete" element={<CompletePayment />} />
+      </Route>
+
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route path="/admin/home" element={<Admin />} />
       </Route>
 
       <Route path="/login" element={<Login />} />
