@@ -4,7 +4,7 @@ export const standardTheme = {
     secondDarkPurple: '#6f357c',
     orange: '#ff8c05',
     mainBlack: '#1f1f1f',
-    black: '#696969',
+    black: '#363636',
     secondBlack: '#484848',
     darkGray: '#625e5e',
     lightGray: '#cdcdcd',

@@ -12,7 +12,6 @@ export const Container = styled.nav`
   img {
     width: 60%;
     margin: 40px 0;
- 
   }
 `;
 
@@ -29,6 +28,8 @@ export const NavLink = styled(Link)`
   padding: 12px 20px;
   text-decoration: none;
   color: ${(props) => props.theme.white};
+  background-color: ${(props) =>
+    props.$isActive ? props.theme.purple : 'trasparent'};
 
   &:hover {
     background-color: ${(props) => props.theme.purple};
