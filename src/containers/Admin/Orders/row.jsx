@@ -31,10 +31,10 @@ export function Row(props) {
           <TableCell component="th" scope="row">
             {row.name}
           </TableCell>
-          <TableCell align="right">{row.calories}</TableCell>
-          <TableCell align="right">{row.fat}</TableCell>
+          <TableCell align="right">{row.name}</TableCell>
+          {/* <TableCell align="right">{row.fat}</TableCell>
           <TableCell align="right">{row.carbs}</TableCell>
-          <TableCell align="right">{row.protein}</TableCell>
+          <TableCell align="right">{row.protein}</TableCell> */}
         </TableRow>
         <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -54,14 +54,14 @@ export function Row(props) {
                   </TableHead>
                   <TableBody>
                     {row.history.map((historyRow) => (
-                      <TableRow key={historyRow.date}>
+                      <TableRow key={row.name}>
                         <TableCell component="th" scope="row">
                           {historyRow.date}
                         </TableCell>
-                        <TableCell>{historyRow.customerId}</TableCell>
-                        <TableCell align="right">{historyRow.amount}</TableCell>
+                        <TableCell>{row.name}</TableCell>
+                        <TableCell align="right">{row.name}</TableCell>
                         <TableCell align="right">
-                          {Math.round(historyRow.amount * row.price * 100) / 100}
+                          {/* {Math.round(historyRow.amount * row.price * 100) / 100} */}
                         </TableCell>
                       </TableRow>
                     ))}
