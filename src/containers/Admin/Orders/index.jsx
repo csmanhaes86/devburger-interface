@@ -11,14 +11,14 @@ import { useEffect, useState } from 'react';
 import { Row } from './row';
 
 export function Orders() {
-  const [orders, serOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
     async function loadOrders() {
       const { data } = await api.get('orders');
 
-      serOrders(data);
+      setOrders(data);
       console.log(data);
     }
 
@@ -27,9 +27,9 @@ export function Orders() {
 
   function createData(order) {
     return {
-      name: order.name,
+      name: order.user.name,
       orderId: order._id,
-      date: order.createAt,
+      date: order.createdAt,
       status: order.status,
       products: order.products,
     };
