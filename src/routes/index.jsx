@@ -18,6 +18,7 @@ import { UserLayout } from '../layouts/UserLayout';
 import { AdminLayout } from '../layouts/AdminLayout';
 export function Router() {
   return (
+    // teste
     <Routes>
       <Route path="/" element={<UserLayout />}>
         <Route path="/" element={<Home />} />
