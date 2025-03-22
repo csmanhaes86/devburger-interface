@@ -60,14 +60,30 @@ export function Orders() {
     setActiveStatus(status.id);
   }
 
+  useEffect(() => {
+    if (activeStatus === 0) {
+      setFilterOrders(orders);
+    } else {
+      const statusIndex = orderStatusOptions.findIndex(
+        (item) => item.id === activeStatus,
+      );
+
+      const newFilterOrders = orders.filter(
+        (order) => order.status === orderStatusOptions[statusIndex].value,
+      );
+
+      setFilterOrders(newFilterOrders);
+    }
+  }, [orders]);
+
   return (
     <>
       <Filter>
         {orderStatusOptions.map((status) => (
-          <FilterOption 
-          key={status.id} 
-          onClick={() => handleStatus(status)}
-          $isActiveStatus={activeStatus === status.id}
+          <FilterOption
+            key={status.id}
+            onClick={() => handleStatus(status)}
+            $isActiveStatus={activeStatus === status.id}
           >
             {status.label}
           </FilterOption>
