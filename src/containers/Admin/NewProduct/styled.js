@@ -53,16 +53,23 @@ export const LabelUpload = styled.label`
     width: 20px;
     height: 20px;
     fill: ${(props) => props.theme.white};
-    margin-right: 4px;  
+    margin-right: 4px;
   }
 
   input {
-      display: none;
-    }
+    display: none;
+  }
 `;
 
 export const Select = styled(ReactSelect)``;
 
 export const SubmitButton = styled(Button)`
   margin-top: 40px;
+`;
+
+export const ErrorMenssage = styled.span`
+  color: ${(props) => props.theme.darkRed};
+  font-size: 14px;
+  line-height: 80%;
+  font-weight: 600;
 `;
