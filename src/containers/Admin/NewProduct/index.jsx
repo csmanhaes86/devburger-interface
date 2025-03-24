@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Image } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { api } from '../../../services/api';
 import {
@@ -18,10 +19,28 @@ import {
 } from './styled';
 
 const schema = yup.object({
-  name: yup.string().required(),
-  price: yup.number().positive().required(),
-  category: yup.string().required(),
-  file: yup.mixed(),
+  name: yup.string().required('Digite o nome do produto'),
+  price: yup
+    .number()
+    .positive()
+    .required('Digite o preço do produto')
+    .typeError('Digite o preço do produto'),
+  category: yup.object().required('Escolha uma categoria'),
+  file: yup
+    .mixed()
+    .test('required', 'Escolha um arquivo para continuar', (value) => {
+      return value && value.length > 0;
+    })
+    .test('fileSize', 'Carregue arquivo até 3mb', (value) => {
+      return value && value.length > 0 && value[0].size <= 300000;
+    })
+    .test('type', 'Carregue apenas imagens PNG ou JPEG', (value) => {
+      return (
+        value &&
+        value.length > 0 &&
+        (value[0].type === 'image/jpeg' || value[0].type === 'image/png')
+      );
+    }),
 });
 
 export function NewProduct() {
@@ -46,8 +65,19 @@ export function NewProduct() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const productFormData = new FormData();
+
+    productFormData.append('name', data.name);
+    productFormData.append('price', data.price);
+    productFormData.append('category_id', data.category.id);
+    productFormData.append('file', data.file[0]);
+
+    await toast.promise(api.post('/products', productFormData), {
+      pending: 'Adicionado o produto...',
+      success: 'Produto adicionado com sucesso!',
+      error: 'Falha ao adicionar o produto, tente novamente.',
+    });
   };
 
   return (
@@ -80,6 +110,8 @@ export function NewProduct() {
 
             {fileName || 'Upload do produto'}
           </LabelUpload>
+
+          <ErrorMenssage>{errors?.file?.message}</ErrorMenssage>
         </InputGroup>
 
         <InputGroup>
@@ -87,8 +119,9 @@ export function NewProduct() {
           <Controller
             name="category"
             control={control}
-            render={(field) => (
+            render={({ field }) => (
               <Select
+                {...field}
                 options={categories}
                 getOptionLabel={(category) => category.name}
                 getOptionValue={(category) => category.id}
@@ -97,6 +130,8 @@ export function NewProduct() {
               />
             )}
           />
+
+          <ErrorMenssage>{errors?.category?.message}</ErrorMenssage>
         </InputGroup>
 
         <SubmitButton>Adicionar Produto</SubmitButton>
