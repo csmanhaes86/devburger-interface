@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { Image } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 import { api } from '../../../services/api';
 import {
@@ -16,6 +17,7 @@ import {
   LabelUpload,
   Select,
   SubmitButton,
+  ContainerCheckbox,
 } from './styled';
 
 const schema = yup.object({
@@ -26,6 +28,7 @@ const schema = yup.object({
     .required('Digite o preço do produto')
     .typeError('Digite o preço do produto'),
   category: yup.object().required('Escolha uma categoria'),
+  offer: yup.boolean(),
   file: yup
     .mixed()
     .test('required', 'Escolha um arquivo para continuar', (value) => {
@@ -46,6 +49,8 @@ const schema = yup.object({
 export function NewProduct() {
   const [fileName, setFileName] = useState(null);
   const [categories, setCategories] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadcategories() {
@@ -72,12 +77,15 @@ export function NewProduct() {
     productFormData.append('price', data.price);
     productFormData.append('category_id', data.category.id);
     productFormData.append('file', data.file[0]);
-
+    productFormData.append('offer', data.offer);
     await toast.promise(api.post('/products', productFormData), {
       pending: 'Adicionado o produto...',
       success: 'Produto adicionado com sucesso!',
       error: 'Falha ao adicionar o produto, tente novamente.',
     });
+    setTimeout(() => {
+      navigate('/admin/produtos');
+    }, 2000);
   };
 
   return (
@@ -132,6 +140,13 @@ export function NewProduct() {
           />
 
           <ErrorMenssage>{errors?.category?.message}</ErrorMenssage>
+        </InputGroup>
+
+        <InputGroup>
+          <ContainerCheckbox>
+            <input type="checkbox" {...register('offer')} />
+            <Label> Produto em Orfeta?</Label>
+          </ContainerCheckbox>
         </InputGroup>
 
         <SubmitButton>Adicionar Produto</SubmitButton>

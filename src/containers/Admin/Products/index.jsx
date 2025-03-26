@@ -68,7 +68,7 @@ export function Products() {
                   <ProductImage src={product.url} />
                 </TableCell>
                 <TableCell align="center">
-                  <EditButton onClick={() => editProduct(products)}>
+                  <EditButton onClick={() => editProduct(product)}>
                     <Pencil />
                   </EditButton>
                 </TableCell>
