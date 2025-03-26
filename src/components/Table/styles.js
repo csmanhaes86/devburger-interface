@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Root = styled.table`
   width: 100%;
+  height: 100%;
   border-collapse: collapse;
   background-color: ${(props) => props.theme. white};
   border-radius: 20px;
