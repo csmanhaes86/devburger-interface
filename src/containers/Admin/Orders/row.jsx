@@ -32,7 +32,7 @@ export function Row({ row, orders, setOrders }) {
 
       setOrders(newOrders);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -60,7 +60,7 @@ export function Row({ row, orders, setOrders }) {
             options={orderStatusOptions.filter((status) => status.id !== 0)}
             placeholder="Status"
             defaultValue={orderStatusOptions.find(
-              (status) => status.value === row.status || null,
+              (status) => status.value === row.status || null ,
             )}
             onChange={(status) => newStatusOrder(row.orderId, status.value)}
             isLoading={loading}
@@ -112,7 +112,7 @@ export function Row({ row, orders, setOrders }) {
 }
 
 Row.propTypes = {
-  orders: PropTypes.arrayOf.isRequired,
+  orders: PropTypes.array.isRequired,
   setOrders: PropTypes.func.isRequired,
   row: PropTypes.shape({
     orderId: PropTypes.string.isRequired,

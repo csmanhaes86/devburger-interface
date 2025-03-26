@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: minmax(200px, 280px) 1fr;
+  grid-template-columns: minmax(220px, 280px) 1fr;
 
   main {
     display: flex;
@@ -11,6 +11,7 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
     background-color: ${(props) => props.theme.secondWhite};
+    overflow-y: auto;
 
     section {
       margin: 0 auto;
