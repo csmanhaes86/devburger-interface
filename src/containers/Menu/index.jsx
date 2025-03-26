@@ -109,12 +109,12 @@ export function Menu() {
         ))}
       </ProductsContainer>
 
-      <BackButton
-        onClick={() => {
-          navigate({
-            pathname: '/',
-          });
-        }}
+      <BackButton to={'/'}
+        // onClick={() => {
+        //   navigate({
+        //     pathname: '/',
+        //   });
+        // }}
       >
         VOLTAR
       </BackButton>

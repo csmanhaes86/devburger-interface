@@ -7,7 +7,7 @@ import Background from '../../assets/background.svg';
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  background-color: ${(props) => props.theme. secondWhite};
+  background-color: ${(props) => props.theme.secondWhite};
 
   background: linear-gradient(
       rgba(255, 255, 255, 0.6),
@@ -33,7 +33,7 @@ export const Banner = styled.div`
     font-family: 'Road Rage', serif;
     font-size: 80px;
     line-height: 65px;
-    color: ${(props) => props.theme. white};
+    color: ${(props) => props.theme.white};
     position: absolute;
 
     right: 20%;
@@ -41,7 +41,7 @@ export const Banner = styled.div`
 
     span {
       display: block;
-      color: ${(props) => props.theme. white};
+      color: ${(props) => props.theme.white};
       font-size: 20px;
     }
   }
@@ -58,13 +58,17 @@ export const CategoryButton = styled(Link)`
   text-decoration: none;
   cursor: pointer;
   background-color: none;
-  color: ${(props) => (props.$isActiveCategory ? (props) => props.theme.purple : (props) => props.theme.black)};
+  color: ${(props) =>
+    props.$isActiveCategory
+      ? (props) => props.theme.purple
+      : (props) => props.theme.black};
   font-size: 24px;
   font-weight: 500;
   padding-bottom: 5px;
   line-height: 20px;
   border: none;
-  border-bottom: ${(props) => props.$isActiveCategory && `3px solid ${(props) => props.theme.purple}` };
+  border-bottom: ${(props) =>
+    props.$isActiveCategory && `3px solid ${(props) => props.theme.purple}`};
 `;
 
 export const ProductsContainer = styled.div`
@@ -74,7 +78,7 @@ export const ProductsContainer = styled.div`
   justify-content: center;
   max-width: 1280px;
   gap: 60px;
-  margin: 50px auto;
+  margin: 50px auto 0px;
 `;
 
 export const BackButton = styled(Link)`
@@ -82,12 +86,13 @@ export const BackButton = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${(props) => props.theme.black};
+  color: ${(props) => props.theme.darkGray};
   font-size: 18px;
   font-weight: 600;
   text-decoration: none;
+  margin-bottom: 40px;
 
   &:hover {
-    color: #9758a2;
+    color: ${(props) => props.theme.purple};
   }
 `;
